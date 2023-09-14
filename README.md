@@ -23,5 +23,6 @@ agent becomes available to get new issue. The system assigns unassigned issues a
 - Use Resolve Issue By Id route to resolve a specific issue
 - Use delete All Issues route to clear all issues from the DB
 
-Postman collection: https://documenter.getpostman.com/view/14588037/2s9YC5wrzK
+**Postman collection**:<br> 
+- https://documenter.getpostman.com/view/14588037/2s9YC5wrzK
 - Use Run in Postman button to use defined routes
