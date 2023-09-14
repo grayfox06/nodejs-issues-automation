@@ -17,7 +17,7 @@ agent becomes available to get new issue. The system assigns unassigned issues a
 
 **How to run with Docker:**<br>
 - Clone the code to your hard drive from the repo
-- Install Docker
+- Install and configure Docker
 - Build the container from the project folder with: _'docker build -t nodejs-issues-automation .'_
 - Run the image with: _'docker run -p 3000:3000 -d nodejs-issues-automation'_
 - Use Postman to test routes
