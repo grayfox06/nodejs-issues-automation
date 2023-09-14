@@ -73,36 +73,42 @@ app.post('/api/issues', (req, res) => {
 app.put('/api/issues/:id', (req, res) => {
   const { id } = req.params;
 
-  // Simulate issue resolution (for simplicity)
-  db.run(
-    'UPDATE issues SET status = ?, agentId = ? WHERE id = ?',
-    ['resolved', null, id],
-    function (err) {
-      if (err) {
-        return res.status(500).json({ error: 'Failed to resolve the issue' });
+  // Get the agentId of the resolved issue
+  db.get(
+    'SELECT agentId FROM issues WHERE id = ?',
+    [id],
+    (agentErr, agentRow) => {
+      if (agentErr) {
+        return res
+          .status(500)
+          .json({ error: 'Failed to find the support agent' });
       }
 
-      // Mark the support agent as available
-      db.get(
-        'SELECT agentId FROM issues WHERE id = ?',
-        [id],
-        (agentErr, agentRow) => {
-          if (agentErr) {
+      if (!agentRow) {
+        return res.status(500).json({ error: 'Issue not found' });
+      }
+
+      const agentId = agentRow.agentId;
+
+      // Simulate issue resolution (for simplicity)
+      db.run(
+        'UPDATE issues SET status = ?, agentId = ? WHERE id = ?',
+        ['resolved', null, id],
+        function (err) {
+          if (err) {
             return res
               .status(500)
-              .json({ error: 'Failed to find the support agent' });
+              .json({ error: 'Failed to resolve the issue' });
           }
 
-          if (agentRow) {
-            const agentId = agentRow.agentId;
-            db.run('UPDATE support_agents SET isAvailable = 1 WHERE id = ?', [
-              agentId,
-            ]);
-          }
+          // Mark the specific support agent as available
+          db.run('UPDATE support_agents SET isAvailable = 1 WHERE id = ?', [
+            agentId,
+          ]);
+
+          res.json({ message: 'Issue marked as resolved' });
         }
       );
-
-      res.json({ message: 'Issue marked as resolved' });
     }
   );
 });
@@ -112,6 +118,16 @@ app.get('/api/issues', (req, res) => {
   db.all('SELECT * FROM issues', (err, rows) => {
     if (err) {
       return res.status(500).json({ error: 'Failed to fetch issues' });
+    }
+    res.json(rows);
+  });
+});
+
+// API to get a list of all agents
+app.get('/api/agents', (req, res) => {
+  db.all('SELECT * FROM support_agents', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to fetch agents' });
     }
     res.json(rows);
   });
