@@ -12,14 +12,14 @@ agent becomes available to get new issue. The system assigns unassigned issues a
 
 **How to run with Node.js:**<br>
 - Clone the code to your hard drive from the repo
-- Start the app from the project folder with: _npm start_
+- Start the app from the project folder with: _'npm start'_
 - Use Postman to test routes
 
 **How to run with Docker:**<br>
 - Clone the code to your hard drive from the repo
 - Install Docker
-- Build the container from the project folder with: _docker build -t nodejs-issues-automation ._
-- Run the image with: _docker run -p 3000:3000 -d nodejs-issues-automation_
+- Build the container from the project folder with: _'docker build -t nodejs-issues-automation .'_
+- Run the image with: _'docker run -p 3000:3000 -d nodejs-issues-automation'_
 - Use Postman to test routes
 
 **How to use in Postman:**<br>
