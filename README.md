@@ -10,7 +10,7 @@ agent becomes available to get new issue. The system assigns unassigned issues a
 - Docker
 - Postman
 
-**How to run:**<br>
+**How to run with Node.js:**<br>
 - Clone the code to your hard drive from the repo
 - Start the app from the project folder with: _npm start_
 - Use Postman to test routes
