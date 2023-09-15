@@ -25,7 +25,7 @@ agent becomes available to get new issue. The system assigns unassigned issues a
 **How to use in Postman:**<br>
 - Use Post New Issue route to create a new issue and assign it to free agent
 - Use Get All Agents route to get a collection of all agents
-- Use Get All Issues route to ge ta collection of all issues
+- Use Get All Issues route to get a collection of all issues
 - Use Resolve Issue By Id route to resolve a specific issue
 - Use delete All Issues route to clear all issues from the DB
 
